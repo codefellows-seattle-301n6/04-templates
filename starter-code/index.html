@@ -37,6 +37,12 @@
         option element (one for author, one for category), and
         render the list once you have data to populate it with.
        -->
+    <script id="authorFilterTemplate" type="text/x-handlebars-template">
+      <option value="{{author}}">{{author}}</option>
+    </script>
+    <script id="categoryFilterTemplate" type="text/x-handlebars-template">
+      <option value="{{category}}">{{category}}</option>
+    </script>
   </head>
   <body>
     <header class="site-header clearfix">
