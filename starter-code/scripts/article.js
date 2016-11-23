@@ -24,7 +24,7 @@ Article.prototype.toHtml = function() {
   //       - Now "compile" your template with Handlebars.
   //       - Don't forget to return your template for this article.
   var blackMagicCompile = Handlebars.compile($('#articleTemplate').html());
-  $('#articles').append(blackMagicCompile(ourLocalData));
+  $('#articles').append(blackMagicCompile(this));
 };
 
 ourLocalData.sort(function(a,b) {
