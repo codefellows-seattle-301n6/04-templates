@@ -24,8 +24,6 @@ Article.prototype.toHtml = function() {
   //       - Now "compile" your template with Handlebars.
   //       - Don't forget to return your template for this article.
 
-
-
   var template = Handlebars.compile($('#articleTemplate').html());
   $('#articles').append(template(ourLocalData));
 };

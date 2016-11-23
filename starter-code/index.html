@@ -32,6 +32,16 @@
         </article>
       {{/each}}
     </script>
+
+    <script id="authorOptions" type="text/x-handlebars-template">
+      <option value="{{value}}"> {{optionName}} </option>
+    </script>
+
+    <script id="categoryOptions" type="text/x-handlebars-template">
+      <option value="{{value}}"> {{optionName}} </option>
+    </script>
+
+    </script>
     <!--
         STRETCH! Look at all that duplicated code in our
         populateFilters method! Looks like a good opportunity
@@ -65,12 +75,12 @@
           <ul id="filters">
             <li>
               <select id="author-filter">
-                <option value="">-- Filter by Authors --</option>
+                <option class="emptyOption" value="">-- Filter by Authors --</option>
               </select>
             </li>
             <li>
               <select id="category-filter">
-                <option value="">-- Filter by Categories --</option>
+                <option class="emptyOption" value="">-- Filter by Categories --</option>
               </select>
             </li>
           </ul>
