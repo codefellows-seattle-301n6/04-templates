@@ -17,18 +17,20 @@
       specify the type!
     - Insert correct placeholder properties based on our Model.
     -->
-    <script id="articleTemplate" type=""text/x-handlebars-template"">
-      <article class="clearfix" data-author="{{ author }}" data-category=" {{ category }} ">
-        <header>
-          <h1> {{ title }} </h1>
-          <div class="byline">
-            By <address>{{ author }}<a href=" {{ authorUrl }} "> </a></address>
-            {{publishStatus}}
-          </div>
-        </header>
-        <section class="article-body"> {{ body }} </section>
-        <a href="#" class="read-on">Read on &rarr;</a>
-      </article>
+    <script id="articleTemplate" type="text/x-handlebars-template">
+      {{#each this}}
+        <article class="clearfix" data-author="{{author}}" data-category=" {{category}} ">
+          <header>
+            <h1> {{title}} </h1>
+            <div class="byline">
+              By <address>{{author}}<a href=" {{authorUrl}} "> </a></address>
+              {{publishStatus}}
+            </div>
+          </header>
+          <section class="article-body"> {{{ body }}} </section>
+          <a href="#" class="read-on">Read on &rarr;</a>
+        </article>
+      {{/each}}
     </script>
     <!--
         STRETCH! Look at all that duplicated code in our
@@ -72,6 +74,9 @@
               </select>
             </li>
           </ul>
+          <div id="article-render">
+
+          </div>
         </div>
       </section>
       <section id="about" class="tab-content">
