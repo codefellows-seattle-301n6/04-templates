@@ -27,9 +27,14 @@ Article.prototype.toHtml = function() {
   return blackMagicCompile(this);
 };
 
-Article.prototype.populateFilters = function() {
+Article.prototype.populateAuthorFilter = function() {
   var authorFilterCompiler = Handlebars.compile($('#authorFilterTemplate').html());
   return authorFilterCompiler(this);
+};
+
+Article.prototype.populateCategoryFilter = function() {
+  var categoryFilterCompiler = Handlebars.compile($('#categoryFilterTemplate').html());
+  return categoryFilterCompiler(this);
 };
 
 ourLocalData.sort(function(a,b) {
@@ -42,5 +47,6 @@ ourLocalData.forEach(function(ele) {
 
 articles.forEach(function(a){
   $('#articles').append(a.toHtml());
-  $('#author-filter').append(a.populateFilters());
+  $('#author-filter').append(a.populateAuthorFilter());
+  $('#category-filter').append(a.populateCategoryFilter());
 });
