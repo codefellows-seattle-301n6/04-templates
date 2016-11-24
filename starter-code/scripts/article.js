@@ -33,8 +33,14 @@ Article.prototype.populateAuthorFilter = function() {
 };
 
 Article.prototype.populateCategoryFilter = function() {
+  Handlebars.registerHelper('noRepeats', function(cat) {
+    if ($(`#category-filter option[value = cat]`).length === 0) {
+      cat = cat || '';
+      return categoryFilterCompiler(this);
+    }
+  });
   var categoryFilterCompiler = Handlebars.compile($('#categoryFilterTemplate').html());
-  return categoryFilterCompiler(this);
+  // return categoryFilterCompiler(this);
 };
 
 ourLocalData.sort(function(a,b) {
