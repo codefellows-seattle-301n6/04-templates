@@ -24,7 +24,12 @@ Article.prototype.toHtml = function() {
   //       - Now "compile" your template with Handlebars.
   //       - Don't forget to return your template for this article.
   var blackMagicCompile = Handlebars.compile($('#articleTemplate').html());
-  $('#articles').append(blackMagicCompile(this));
+  return blackMagicCompile(this);
+};
+
+Article.prototype.populateFilters = function() {
+  var authorFilterCompiler = Handlebars.compile($('#authorFilterTemplate').html());
+  return authorFilterCompiler(this);
 };
 
 ourLocalData.sort(function(a,b) {
@@ -37,4 +42,5 @@ ourLocalData.forEach(function(ele) {
 
 articles.forEach(function(a){
   $('#articles').append(a.toHtml());
+  $('#author-filter').append(a.populateFilters());
 });

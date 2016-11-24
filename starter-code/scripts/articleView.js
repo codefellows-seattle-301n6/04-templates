@@ -17,7 +17,7 @@ articleView.populateFilters = function() {
   //   }
   // });
   var authorFilterCompiler = Handlebars.compile($('#authorFilterTemplate').html());
-  $('#author-filter').append(authorFilterCompiler(this));
+  $('#author-filter').append(authorFilterCompiler());
 };
 
 articleView.handleAuthorFilter = function() {
@@ -64,9 +64,6 @@ articleView.setTeasers = function() {
   });
 };
 
-articles.forEach(function() {
-  $('author-filter').append(articleView.populateFilters());
-});
 articleView.handleCategoryFilter();
 articleView.handleAuthorFilter();
 articleView.handleMainNav();
