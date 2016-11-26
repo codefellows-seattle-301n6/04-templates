@@ -34,8 +34,7 @@ Article.prototype.populateAuthorFilter = function() {
 
 Article.prototype.populateCategoryFilter = function() {
   Handlebars.registerHelper('noRepeats', function(cat) {
-    if ($(`#category-filter option[value = cat]`).length === 0) {
-      cat = cat || '';
+    if ($(`#category-filter option[value = "cat"]`).length === 0) {
       return categoryFilterCompiler(this);
     }
   });
