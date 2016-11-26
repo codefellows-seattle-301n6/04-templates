@@ -33,13 +33,15 @@ Article.prototype.populateAuthorFilter = function() {
 };
 
 Article.prototype.populateCategoryFilter = function() {
-  Handlebars.registerHelper('noRepeats', function(cat) {
-    if ($(`#category-filter option[value = "cat"]`).length === 0) {
-      return categoryFilterCompiler(this);
+  var categoryFilterCompiler = Handlebars.compile($('#categoryFilterTemplate').html());
+  Handlebars.registerHelper('noRepeats', function() {
+    if ($('#category-filter option[value="' + this.category + '"]').length === 0) {
+      return this.category;
+    } else {
+      return $('option:contains([object Object])').hide();
     }
   });
-  var categoryFilterCompiler = Handlebars.compile($('#categoryFilterTemplate').html());
-  // return categoryFilterCompiler(this);
+  return categoryFilterCompiler(this);
 };
 
 ourLocalData.sort(function(a,b) {
