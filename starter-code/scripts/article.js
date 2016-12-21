@@ -17,12 +17,31 @@ Article.prototype.toHtml = function() {
   //   The result is added to the object as a new property, which can then be referenced
   //   by a key in the template. For example, you might want to display how old a post is,
   //   or say "(draft)" if it has no publication date:
-  this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
+  this.daysAgo = parseInt((new Date() - new Date(this.publishedOn)) / 60 / 60 / 24 / 1000);
   this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
   // TODO: Use handlebars to render your articles!
   //       - Select your template from the DOM.
   //       - Now "compile" your template with Handlebars.
   //       - Don't forget to return your template for this article.
+  var blackMagicCompile = Handlebars.compile($('#articleTemplate').html());
+  return blackMagicCompile(this);
+};
+
+Article.prototype.populateAuthorFilter = function() {
+  var authorFilterCompiler = Handlebars.compile($('#authorFilterTemplate').html());
+  return authorFilterCompiler(this);
+};
+
+Article.prototype.populateCategoryFilter = function() {
+  var categoryFilterCompiler = Handlebars.compile($('#categoryFilterTemplate').html());
+  Handlebars.registerHelper('noRepeats', function() {
+    if ($('#category-filter option[value="' + this.category + '"]').length === 0) {
+      return this.category;
+    } else {
+      return $('option:contains([object Object])').hide();
+    }
+  });
+  return categoryFilterCompiler(this);
 };
 
 ourLocalData.sort(function(a,b) {
@@ -35,4 +54,6 @@ ourLocalData.forEach(function(ele) {
 
 articles.forEach(function(a){
   $('#articles').append(a.toHtml());
+  $('#author-filter').append(a.populateAuthorFilter());
+  $('#category-filter').append(a.populateCategoryFilter());
 });
